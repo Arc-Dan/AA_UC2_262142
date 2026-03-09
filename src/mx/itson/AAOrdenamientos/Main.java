@@ -14,7 +14,7 @@ public class Main {
         Ordenamientos ordenamientos = new Ordenamientos();
         
         //Se declara el arreglo a ordenar
-        int[] arreglo = {6,3,8,9,4};
+        int[] arreglo = {6,3,8,4};
         
         //Se utiliza el método de instancia del algoritmo deseado y se da como argumento el arreglo
         ordenamientos.seleccion(arreglo);
