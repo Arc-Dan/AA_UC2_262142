@@ -17,7 +17,7 @@ public class Main {
         int[] arreglo = {6,3,8,9,4};
         
         //Se utiliza el método de instancia del algoritmo deseado y se da como argumento el arreglo
-        ordenamientos.burbuja(arreglo);
+        ordenamientos.seleccion(arreglo);
         
         //Se imprime el arreglo ordenado
         for (int e : arreglo) {
