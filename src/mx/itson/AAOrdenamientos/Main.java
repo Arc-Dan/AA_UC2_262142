@@ -14,15 +14,17 @@ public class Main {
         Ordenamientos ordenamientos = new Ordenamientos();
         
         //Se declara el arreglo a ordenar
-        int[] arreglo = {6,3,8,4};
+        int[] arreglo = {14,6,12};
+        
+        //Se imprime el arreglo desordenado
+        System.out.println("\nArreglo: " + java.util.Arrays.toString(arreglo));
         
         //Se utiliza el método de instancia del algoritmo deseado y se da como argumento el arreglo
-        ordenamientos.seleccion(arreglo);
+        //ordenamientos.burbuja(arreglo);
+        //ordenamientos.seleccion(arreglo);
+        ordenamientos.insercion(arreglo);
         
         //Se imprime el arreglo ordenado
-        for (int e : arreglo) {
-            System.out.print(e + " ");
-        }
-        System.out.println("");
+        System.out.println("\nArreglo ordenado: " + java.util.Arrays.toString(arreglo) + "\n");
     }
 }

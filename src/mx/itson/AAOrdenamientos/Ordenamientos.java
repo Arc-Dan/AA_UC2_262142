@@ -69,4 +69,31 @@ public class Ordenamientos {
         return arreglo;     // 1    11 + (2n)(2n) -> O(n^2)
     }
     
+    public static int[] insercion(int[] arreglo){
+        //Declaración de variable que almacena el tamaño del arreglo
+        int n = arreglo.length;     // 1
+        
+        //El ciclo empieza a iterar desde el elemento de la segunda posición
+        for(int i = 1; i < n; i++){     // 1 + n + n
+            //La primera llave es el valor del segundo elemento
+            int key = arreglo[i];       // 1
+            //Se almacena el índice del elemento anterior
+            int j = i - 1;      // 1
+            
+            //Se cicla mientras "j" sea mayor o igual a cero y el valor del elemento actual, y anterior a la llave, sea mayor a la misma
+            while(j >= 0 && arreglo[j] > key){      // n + n
+                //Se guarda el valor del elemento actual en la siguiente posición del arreglo (la posición de la llave)
+                arreglo[j + 1] = arreglo[j];        // 1
+                //Variable "j" adquiere el valor del index anterior a la posición actual
+                j = j - 1;      // 1
+            }
+            /*Cuando ya no se cumple la condición del ciclo:
+            1.- Si "j" es menor a cero, la llave se guarda en la primera posición del arreglo (index 0)
+            2.- Si valor del elemento en posición "j" es menor a la llave, ésta se guarda en la siguiente posición de dicho elemento*/
+            arreglo[j + 1] = key;   // 1
+        }
+        //Se retorna el arreglo ordenado
+        return arreglo;     // 1    8 + (2n)(2n) -> O(n^2)
+    }
+    
 }
