@@ -101,50 +101,59 @@ public class Ordenamientos {
     //Algoritmo de Ordenamiento QuickSort
     public static void quickSort(int[] arreglo, int inicio, int fin){
         //Condición para el caso base
-        if(inicio < fin){
+        if(inicio < fin){   // 1
             
             //Almacenar el valor del index del pivote actual
-            int pivoteIndice = particion(arreglo, inicio, fin);
-                        
+            int pivoteIndice = particion(arreglo, inicio, fin);  // Complejidad temporal de "particion": O(n)
+            
+            /* Donde: c = comparaciones;  T(n) llamadas a particiones
+                T(n) = c∙n
+            Caso promedio: T(n) = (c∙n)(log n)  -> T(n) = O(n log n)
+            
+            Peor de los casos: T(n) = c∙(n∙(n+1))/2  -> T(n) = O(n^2)
+            */
+            
             //Ordenar sub arreglo de elementos con index menores al del pivote
-            quickSort(arreglo, inicio, pivoteIndice - 1);
+            quickSort(arreglo, inicio, pivoteIndice - 1);   // 1  Caso promedio: O(n log n); Peor de los casos: O(n^2)
             
             //Ordenar sub arreglo de elementos con index mayores al del pivote
-            quickSort(arreglo, pivoteIndice + 1, fin);
+            quickSort(arreglo, pivoteIndice + 1, fin);   // 1
         }
     }
     
     //Particiones para Algoritmo de Ordenamiento QuickSort
     public static int particion(int[] arreglo, int inicio, int fin){
         //Variable 'pivote' toma valor de elemento de la última posición (primer argumento dado a parámetro 'fin' en método 'quickSort' es: "arreglo.length-1")
-        int pivote = arreglo[fin];
+        int pivote = arreglo[fin];      // 1
         
         //Se inicializa 'i' en una posición anterior al primer index de la partición actual
-        int i = inicio - 1;
+        int i = inicio - 1;     // 1+1 = 2
         
         //Se recorren los elementos de la partición actual
-        for (int j = inicio; j < fin; j++){
+        for (int j = inicio; j < fin; j++){     // 1 + n + n -> 1 + 2n
             //Verificar si valor del elemento actual es menor al valor del pivote
-            if(arreglo[j] < pivote){
+            if(arreglo[j] < pivote){    // 1
                 //Se incrementa en 1 el index
-                i++;
+                i++;    // 1
                 //Se almacena el valor del elemento en posición 'i' en variable auxiliar
-                int aux = arreglo[i];
+                int aux = arreglo[i];   // 1
                 //Elemento en posición actual adquiere el valor del elemento menor al pivote (coloca el menor a la izquierda)
-                arreglo[i] = arreglo[j];
+                arreglo[i] = arreglo[j];    // 1
                 //Elemento menor al pivote adquiere el valor de elemento en posición 'i' (se intercambian posiciones)
-                arreglo[j] = aux;
+                arreglo[j] = aux;   // 1
             }
         }
-        
+        /*Al finalizar el ciclo, todos los elementos menores al pivote se encuentran a la izquierda de "i"
+          y los elementos mayores al pivote se encuentran a la derecha de "i"
+        */
         //Se declara auxiliar para colocar el pivote a la derecha del elemento menor
-        int aux = arreglo[i + 1];
+        int aux = arreglo[i + 1];   // 1+1 = 2
         //Se intercambian posiciones del pivote con la del elemento a la derecha del menor
-        arreglo[i + 1] = arreglo[fin];
-        arreglo[fin] = aux;
+        arreglo[i + 1] = arreglo[fin];  // 1+1 = 2
+        arreglo[fin] = aux;     // 1
         
         //Se retorna el index del pivote
-        return i + 1;
+        return i + 1;   //(operación aritmética y retorno) 1+1 = 2    16 + 2n -> O(n)
     }
     
 }
