@@ -4,6 +4,8 @@
  */
 package mx.itson.AAOrdenamientos;
 
+import java.util.Arrays;
+
 /**
  *
  * @author dag13
@@ -94,6 +96,55 @@ public class Ordenamientos {
         }
         //Se retorna el arreglo ordenado
         return arreglo;     // 1    8 + (2n)(2n) -> O(n^2)
+    }
+    
+    //Algoritmo de Ordenamiento QuickSort
+    public static void quickSort(int[] arreglo, int inicio, int fin){
+        //Condición para el caso base
+        if(inicio < fin){
+            
+            //Almacenar el valor del index del pivote actual
+            int pivoteIndice = particion(arreglo, inicio, fin);
+                        
+            //Ordenar sub arreglo de elementos con index menores al del pivote
+            quickSort(arreglo, inicio, pivoteIndice - 1);
+            
+            //Ordenar sub arreglo de elementos con index mayores al del pivote
+            quickSort(arreglo, pivoteIndice + 1, fin);
+        }
+    }
+    
+    //Particiones para Algoritmo de Ordenamiento QuickSort
+    public static int particion(int[] arreglo, int inicio, int fin){
+        //Variable 'pivote' toma valor de elemento de la última posición (primer argumento dado a parámetro 'fin' en método 'quickSort' es: "arreglo.length-1")
+        int pivote = arreglo[fin];
+        
+        //Se inicializa 'i' en una posición anterior al primer index de la partición actual
+        int i = inicio - 1;
+        
+        //Se recorren los elementos de la partición actual
+        for (int j = inicio; j < fin; j++){
+            //Verificar si valor del elemento actual es menor al valor del pivote
+            if(arreglo[j] < pivote){
+                //Se incrementa en 1 el index
+                i++;
+                //Se almacena el valor del elemento en posición 'i' en variable auxiliar
+                int aux = arreglo[i];
+                //Elemento en posición actual adquiere el valor del elemento menor al pivote (coloca el menor a la izquierda)
+                arreglo[i] = arreglo[j];
+                //Elemento menor al pivote adquiere el valor de elemento en posición 'i' (se intercambian posiciones)
+                arreglo[j] = aux;
+            }
+        }
+        
+        //Se declara auxiliar para colocar el pivote a la derecha del elemento menor
+        int aux = arreglo[i + 1];
+        //Se intercambian posiciones del pivote con la del elemento a la derecha del menor
+        arreglo[i + 1] = arreglo[fin];
+        arreglo[fin] = aux;
+        
+        //Se retorna el index del pivote
+        return i + 1;
     }
     
 }

@@ -22,7 +22,8 @@ public class Main {
         //Se utiliza el método de instancia del algoritmo deseado y se da como argumento el arreglo
         //ordenamientos.burbuja(arreglo);
         //ordenamientos.seleccion(arreglo);
-        ordenamientos.insercion(arreglo);
+        //ordenamientos.insercion(arreglo);
+        ordenamientos.quickSort(arreglo, 0, arreglo.length-1);
         
         //Se imprime el arreglo ordenado
         System.out.println("\nArreglo ordenado: " + java.util.Arrays.toString(arreglo) + "\n");
