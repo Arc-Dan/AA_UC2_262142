@@ -14,7 +14,7 @@ public class Main {
         Ordenamientos ordenamientos = new Ordenamientos();
         
         //Se declara el arreglo a ordenar
-        int[] arreglo = {2,-8,2,0};
+        int[] arreglo = {2,-8,0,2};
         
         //Se imprime el arreglo desordenado
         System.out.println("\nArreglo: " + java.util.Arrays.toString(arreglo));
