@@ -23,7 +23,8 @@ public class Main {
         //ordenamientos.burbuja(arreglo);
         //ordenamientos.seleccion(arreglo);
         //ordenamientos.insercion(arreglo);
-        ordenamientos.quickSort(arreglo, 0, arreglo.length-1);
+        //ordenamientos.quickSort(arreglo, 0, arreglo.length-1);
+        ordenamientos.mergeSort(arreglo, 0, arreglo.length-1);
         
         //Se imprime el arreglo ordenado
         System.out.println("\nArreglo ordenado: " + java.util.Arrays.toString(arreglo) + "\n");

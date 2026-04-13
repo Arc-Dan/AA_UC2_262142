@@ -156,4 +156,68 @@ public class Ordenamientos {
         return i + 1;   //(operación aritmética y retorno) 1+1 = 2    16 + 2n -> O(n)
     }
     
+    public static void mergeSort(int[] arreglo, int inicio, int fin){   //5 + (n)(log n) -> n log n -> O(n log n)
+        //Condicional para el caso recursivo y el caso base (si no se cumple)
+        if(inicio < fin){   // 1
+            //Se almacena el valor del medio del arreglo para dividirlo en dos mitades
+            int medio = inicio + (fin - inicio) / 2;    //4
+            
+            //Llamada recursiva del lado izquierdo
+            mergeSort(arreglo, inicio, medio);  //log n
+            
+            //Llamada recursiva del lado derecho
+            mergeSort(arreglo, medio+1, fin);   //log n
+            
+            //Se llama el método de 'merge' para ordenar y unir los subarreglos
+            merge(arreglo, inicio, medio, fin); //O(n)
+        }
+    }
+    public static void merge(int[] arreglo, int inicio, int medio, int fin){    // 27 + 2n + 2n + n -> O(n)
+        //Calcular tamaño de subarreglos temporales
+        int n1 = medio - inicio + 1;    //Parte izquierda   3
+        int n2 = fin - medio;    //Parte derecha    2
+        
+        //Crear arreglos temporales para almacenar las dos mitades
+        int[] izquierdaArr = new int[n1];   //1
+        int[] derechaArr = new int[n2];   //1
+        
+        //Llenar arreglos temporales con sus respectivos elementos
+        for(int i = 0; i < n1; i++){    //Mitad izquierda   1 + n + n -> 1 + 2n
+            izquierdaArr[i] = arreglo[inicio + i];  //2
+        }
+        for(int j = 0; j < n2; j++){    //Mitad derecha
+            derechaArr[j] = arreglo[medio + 1 + j]; //3
+        }
+        
+        //Índices iniciales     3
+        int i = 0;  //subarreglo de la izquierda
+        int j = 0;  //subarreglo de la derecha
+        int k = inicio; //inicio del arreglo original
+        
+        //Mientras ambos subarreglos tengan elementos, se comparan y se ordenan en el arreglo original
+        while(i < n1 && j < n2){    // n/2 + n/2  -> n
+            if(izquierdaArr[i] <= derechaArr[j]){   //1
+                arreglo[k] = izquierdaArr[i];   //Colocar elemento menor en posición actual del ciclo  1
+                i++; //avanzar en la parte izquierda  1
+            } else{
+                arreglo[k] = derechaArr[j];     //1
+                j++;    //1
+            }
+            k++; //avanzar en el arreglo original n -> (n/2 + n/2) + n  -> 2n
+        }
+        
+        //Copiar elementos restantes del subarreglo izquierdo, en caso de que existan
+        while(i < n1){  //n/2
+            arreglo[k] = izquierdaArr[i];
+            i++;
+            k++;
+        }
+        //Copiar elementos restantes del subarreglo derecho, en caso de que existan
+        while(j < n2){  //n/2   -> n/2 + n/2 -> n
+            arreglo[k] = derechaArr[j];
+            j++;
+            k++;
+        }
+    }   // 27 + 2n + 2n + n -> O(n)
+    
 }
